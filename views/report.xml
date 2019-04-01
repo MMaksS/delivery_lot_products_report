@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+                        <report
+                            id="action_generate_delivery_lot_products"
+                            model="stock.picking"
+                            string="Delivery Lot Products"
+                            report_type="qweb-pdf"
+                            name="stock.picking_report_lot_label"
+                            file="stock.picking_report_lot_label.xml"
+                            />
+       </data>
+      </odoo>

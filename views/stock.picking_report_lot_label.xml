@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+<record model="ir.ui.view" id="report_deliverynote">
+<field name="name">report_deliverynote</field>
+<field name="key">stock.report_deliverynote</field>
+<field name="arch" type="xml">
+<qweb>
+<t t-name="stock.picking_report_lot_label">
+    <t t-call="web.basic_layout">
+        <t t-foreach="docs" t-as="o">
+            <t>
+              <t t-foreach="o.move_lines" t-as="line">
+              <div class="page" style="padding:0;">
+                <div class="oe_structure"/>
+                <div class="row">
+                <table style="border-spacing:0;margin-bottom:0;height:550px;" class="table">
+                        <tbody>
+                            <tr style="border-top: none !important;padding:0px !important;">
+                                <td style="width:234px !important;padding:0px !important; border-top:none !important;font-size: 45px; text-align: center;">
+                                    <strong t-esc="line.product_id.display_name.upper()"/>
+                                </td>
+                            </tr>
+                            
+                            <tr style="border-top: none !important;padding:0px !important;">
+                                <td style="width:234px !important;padding:0px !important; border-top:none !important;font-size: 45px; text-align: center;">
+                                    LN\SN: <span t-field="line.move_line_ids.lot_name"/>
+                                </td>
+                            </tr>
+                            <tr style="border-top: none !important;padding:0px !important;">
+                                <td style="text-align: center;padding:0px !important;border-top: none !important; vertical-align: middle;width:234px !important;">
+                                    <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', line.product_id.barcode, 600, 150)" style="width:100%;height:90%;"/>
+                                </td>
+                            </tr>
+                            <tr style="border-top: none !important;padding:0px !important;">
+                                <td style="width:234px !important;padding:0px !important; border-top:none !important; text-align: center;">
+                                    <span style="font-size: 35px;">Маса нетто:</span> <span style="font-size: 52px;" t-field="line.quantity_done"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                </div>
+            </div>
+            <p style="page-break-before:always;"> </p>
+            </t>
+            <!--
+                <div class="page">
+                    <div class="oe_structure"/>
+                    <div class="row">
+                        <div class="col-12">
+                            <table class="table">
+                                <tr>
+                                  <td style="text-align: center;" >
+                                    <span style="font-size:20" t-field="o.product_id.display_name"/>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td style="text-align: center;">
+                                    <span style="font-size:49" t-field="o.product_id.attribute_value_ids"/>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td style="text-align: center;">
+                                    <span style="font-size:13" t-field="o.name"/>
+                                  </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: center; vertical-align: middle;" class="col-5">
+                                        <img t-if="o.name" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', o.name, 600, 150)" style="width:100%;height:20%;"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>-->
+            </t>
+        </t>
+    </t>
+</t>
+</qweb>
+  </field>
+  </record>
+  </odoo>
